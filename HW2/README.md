@@ -1,6 +1,6 @@
 # Huge Integer
 ## 程式目的
-本題為 *Java How to Program* (Deitel & Deitel) 的題目，建立一個 class`HugeInteger`，作為一個 40 個位元長的整數的資料結構，包含以下 methods：
+本題為 *Java How to Program* (Deitel & Deitel) 的題目，建立一個 class `HugeInteger`，作為一個 40 個位元長的整數的資料結構，包含以下 methods：
 |Method|Meaning|
 |:---|:---|
 |parse|將輸入字串轉換成數字儲存於物件|
@@ -66,7 +66,7 @@ true
 
 # Tic-Tac-Toe
 ## 程式目的
-本題為 *Java How to Program* (Deitel & Deitel) 的題目，建立一個 class`TicTacToe`，能夠讓兩個玩家玩 Tic-Tac-Toe 遊戲，遊戲會判斷輸贏並自動進行下一輪，直到玩家輸入 -1 結束遊戲。
+本題為 *Java How to Program* (Deitel & Deitel) 的題目，建立一個 class `TicTacToe`，能夠讓兩個玩家玩 Tic-Tac-Toe 遊戲，遊戲會判斷輸贏並自動進行下一輪，直到玩家輸入 -1 結束遊戲。
 
 ### 範例
 <li>範例 main 函式</li>
