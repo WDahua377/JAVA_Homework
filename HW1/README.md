@@ -86,13 +86,13 @@ sudo apt install default-jdk
 javac Simpletron.java
 ```
 
+## 執行
+```bash
+java -cp . Simpletron
+```
+
 ## 清理環境
 清理建置過程中所生成的檔案
 ```bash
 rm -f *.class
-```
-
-## 執行
-```bash
-java -cp . Simpletron
 ```
