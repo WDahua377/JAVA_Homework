@@ -168,14 +168,14 @@ sudo apt install default-jdk
 javac HugeInteger.java TicTacToe.java
 ```
 
-## 清理環境
-清理建置過程中所生成的檔案
-```bash
-rm -f *.class
-```
-
 ## 執行
 ```bash
 java -cp . HugeInteger
 java -cp . TicTacToe
+```
+
+## 清理環境
+清理建置過程中所生成的檔案
+```bash
+rm -f *.class
 ```
