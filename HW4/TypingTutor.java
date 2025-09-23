@@ -29,7 +29,7 @@ public class TypingTutor extends JFrame implements KeyListener{
     // public static JButton up, down, left, right, space;
     // public static JButton backspace, tab, caps, enter, shift;
     public static Map<Character, JButton> keyMap;
-    public static Map<Integer, JButton> speicalKeyMap;
+    public static Map<Integer, JButton> specialKeyMap;
     public static JLabel label;
     public static JTextArea textarea;
 
@@ -59,6 +59,7 @@ public class TypingTutor extends JFrame implements KeyListener{
         
         keyPanel.setPreferredSize(new Dimension(820, 300));
         keyMap = new HashMap<>();
+        specialKeyMap = new HashMap<>();
         addKey(keyMap, keyPanel, "~", 35, 0, 45, 45,'~', '`');
         addKey(keyMap, keyPanel, "1", 85, 0, 45, 45,'1', '!');
         addKey(keyMap, keyPanel, "2", 135, 0, 45, 45,'2', '@');
@@ -72,8 +73,8 @@ public class TypingTutor extends JFrame implements KeyListener{
         addKey(keyMap, keyPanel, "0", 535, 0, 45, 45, '0', ')');
         addKey(keyMap, keyPanel, "-", 585, 0, 45, 45, '-', '_');
         addKey(keyMap, keyPanel, "+", 635, 0, 45, 45, '+', '=');
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_BACK_SPACE, "Backspace", 685, 0, 100, 45);
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_TAB, "Tab", 35, 50, 70, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_BACK_SPACE, "Backspace", 685, 0, 100, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_TAB, "Tab", 35, 50, 70, 45);
         addKey(keyMap, keyPanel, "Q", 110, 50, 45, 45, 'Q', 'q');
         addKey(keyMap, keyPanel, "W", 160, 50, 45, 45, 'W', 'w');
         addKey(keyMap, keyPanel, "E", 210, 50, 45, 45, 'E', 'e');
@@ -87,7 +88,7 @@ public class TypingTutor extends JFrame implements KeyListener{
         addKey(keyMap, keyPanel, "[", 610, 50, 45, 45, '[', '{');
         addKey(keyMap, keyPanel, "]", 660, 50, 45, 45, ']', '}');
         addKey(keyMap, keyPanel, "\\", 710, 50, 45, 45, '\\', '|');
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_CAPS_LOCK, "Caps", 35, 100, 70, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_CAPS_LOCK, "Caps", 35, 100, 70, 45);
         addKey(keyMap, keyPanel, "A", 110, 100, 45, 45, 'A', 'a');
         addKey(keyMap, keyPanel, "S", 160, 100, 45, 45, 'S', 's');
         addKey(keyMap, keyPanel, "D", 210, 100, 45, 45, 'D', 'd');
@@ -99,8 +100,8 @@ public class TypingTutor extends JFrame implements KeyListener{
         addKey(keyMap, keyPanel, "L", 510, 100, 45, 45, 'L', 'l');
         addKey(keyMap, keyPanel, ":", 560, 100, 45, 45, ':', ';');
         addKey(keyMap, keyPanel, "\"", 610, 100, 45, 45, '\'', '\"');
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_ENTER, "Enter", 660, 100, 95, 45);
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_SHIFT, "Shift", 35, 150, 45, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_ENTER, "Enter", 660, 100, 95, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_SHIFT, "Shift", 35, 150, 45, 45);
         addKey(keyMap, keyPanel, "Z", 135, 150, 45, 45, 'Z', 'z');
         addKey(keyMap, keyPanel, "X", 185, 150, 45, 45, 'X', 'x');
         addKey(keyMap, keyPanel, "C", 235, 150, 45, 45, 'C', 'c');
@@ -112,10 +113,10 @@ public class TypingTutor extends JFrame implements KeyListener{
         addKey(keyMap, keyPanel, ".", 535, 150, 45, 45, '.', '>');
         addKey(keyMap, keyPanel, "?", 585, 150, 45, 45, '?', '/');
         addKey(keyMap, keyPanel, " ", 230, 200, 305, 45);
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_UP, "^", 660, 150, 45, 45);
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_LEFT, "<", 610, 200, 45, 45);
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_DOWN, "v", 660, 200, 45, 45);
-        addKey(speicalKeyMap, keyPanel, KeyEvent.VK_RIGHT, ">", 710, 200, 45, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_UP, "^", 660, 150, 45, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_LEFT, "<", 610, 200, 45, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_DOWN, "v", 660, 200, 45, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_RIGHT, ">", 710, 200, 45, 45);
 
         textarea.addKeyListener(this);
     }
@@ -137,7 +138,7 @@ public class TypingTutor extends JFrame implements KeyListener{
 
     // function key
     public void keyPressed(KeyEvent event){
-        JButton btn = speicalKeyMap.get(event.getKeyCode());
+        JButton btn = specialKeyMap.get(event.getKeyCode());
         if(btn != null){
             btn.setBackground(Color.GRAY);
         }
@@ -145,22 +146,31 @@ public class TypingTutor extends JFrame implements KeyListener{
 
     public void keyReleased(KeyEvent event){
         JButton btn = null;
-        if(event.getKeyChar() != KeyEvent.CHAR_UNDEFINED){  // character
+        if(keyMap.get(event.getKeyChar()) != null){  // character
             btn = keyMap.get(event.getKeyChar());
-        }else{                                              // specialKey
-            btn = speicalKeyMap.get(event.getKeyCode());
         }
-        btn.setBackground(textarea.getBackground());
+        if(btn == null){                                    // specialKey
+            btn = specialKeyMap.get(event.getKeyCode());
+        }
+        if(btn != null){
+            btn.setBackground(textarea.getBackground());
+        }
     }
 
     public void keyTyped(KeyEvent event){
         JButton btn = null;
-        if(event.getKeyChar() != KeyEvent.CHAR_UNDEFINED){  // character
-            btn = keyMap.get(event.getKeyChar());
-        }else{                                              // specialKey
-            btn = speicalKeyMap.get(event.getKeyCode());
+        btn = keyMap.get(event.getKeyChar());
+        // if(event.getKeyChar() != KeyEvent.CHAR_UNDEFINED){  // character
+            // btn = keyMap.get(event.getKeyChar());
+        // }
+        // if(btn == null){                                    // specialKey
+        //     System.out.println("btn is null now its not");
+        //     btn = specialKeyMap.get(event.getKeyCode());
+        //     System.out.printf("btn :%s", btn.getText());
+        // }
+        if(btn != null){
+            btn.setBackground(Color.GRAY);
         }
-        btn.setBackground(Color.GRAY);
     }
 
     public static void main(String[] args){
