@@ -5,12 +5,12 @@
 <li>實際介面截圖</li>
 
 <!-- <div align = "center"> -->
-<img src = "https://github.com/WDahua377/JAVA_Homework/blob/main/HW4/GUI_Image.png" width = 50%></div>
+<img src = "https://github.com/WDahua377/JAVA_Homework/blob/main/HW4/GUI_Image.png" width = 70%></div>
 
 
 ## 工具準備
 
-<li>安裝 JAVA JDK：</li>
+安裝 JAVA JDK：
 
 ```bash
 sudo apt update
