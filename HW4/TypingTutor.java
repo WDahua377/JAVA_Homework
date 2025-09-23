@@ -22,12 +22,6 @@ import java.util.Map;
 
 public class TypingTutor extends JFrame implements KeyListener{
 
-    // public static JButton tilde, one, two, three, four, five, six, seven, eight, nine, zero, dash, plus, backspace;
-    // public static JButton tab, Q, W, E, R, T, Y, U, I, O, P, lbracket, rbracket, backslash;
-    // public static JButton caps, A, S, D, F, G, H, J, K, L, colon, quote, enter;
-    // public static JButton shift, Z, X, C, V, B, N, M, comma, dot, question;
-    // public static JButton up, down, left, right, space;
-    // public static JButton backspace, tab, caps, enter, shift;
     public static Map<Character, JButton> keyMap;
     public static Map<Integer, JButton> specialKeyMap;
     public static JLabel label;
@@ -101,7 +95,7 @@ public class TypingTutor extends JFrame implements KeyListener{
         addKey(keyMap, keyPanel, ":", 560, 100, 45, 45, ':', ';');
         addKey(keyMap, keyPanel, "\"", 610, 100, 45, 45, '\'', '\"');
         addKey(specialKeyMap, keyPanel, KeyEvent.VK_ENTER, "Enter", 660, 100, 95, 45);
-        addKey(specialKeyMap, keyPanel, KeyEvent.VK_SHIFT, "Shift", 35, 150, 45, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_SHIFT, "Shift", 35, 150, 95, 45);
         addKey(keyMap, keyPanel, "Z", 135, 150, 45, 45, 'Z', 'z');
         addKey(keyMap, keyPanel, "X", 185, 150, 45, 45, 'X', 'x');
         addKey(keyMap, keyPanel, "C", 235, 150, 45, 45, 'C', 'c');
@@ -112,7 +106,7 @@ public class TypingTutor extends JFrame implements KeyListener{
         addKey(keyMap, keyPanel, ",", 485, 150, 45, 45, ',', '<');
         addKey(keyMap, keyPanel, ".", 535, 150, 45, 45, '.', '>');
         addKey(keyMap, keyPanel, "?", 585, 150, 45, 45, '?', '/');
-        addKey(keyMap, keyPanel, " ", 230, 200, 305, 45);
+        addKey(specialKeyMap, keyPanel, KeyEvent.VK_SPACE, " ", 230, 200, 305, 45);
         addKey(specialKeyMap, keyPanel, KeyEvent.VK_UP, "^", 660, 150, 45, 45);
         addKey(specialKeyMap, keyPanel, KeyEvent.VK_LEFT, "<", 610, 200, 45, 45);
         addKey(specialKeyMap, keyPanel, KeyEvent.VK_DOWN, "v", 660, 200, 45, 45);
@@ -121,6 +115,7 @@ public class TypingTutor extends JFrame implements KeyListener{
         textarea.addKeyListener(this);
     }
 
+    // overload addKey for keyMap and specialKeyMap
     public void addKey(Map<Character, JButton> map ,JPanel panel, String label, int x, int y, int w, int h, char... chars){
         JButton btn = new JButton(label);
         for(char c : chars){
@@ -144,12 +139,10 @@ public class TypingTutor extends JFrame implements KeyListener{
         }
     }
 
+    // both
     public void keyReleased(KeyEvent event){
-        JButton btn = null;
-        if(keyMap.get(event.getKeyChar()) != null){  // character
-            btn = keyMap.get(event.getKeyChar());
-        }
-        if(btn == null){                                    // specialKey
+        JButton btn =  keyMap.get(event.getKeyChar());  // keyMap.get() return "null" when its not put in the hash map
+        if(btn == null){                                // which means its specialKey
             btn = specialKeyMap.get(event.getKeyCode());
         }
         if(btn != null){
@@ -157,17 +150,10 @@ public class TypingTutor extends JFrame implements KeyListener{
         }
     }
 
+    // Characters
     public void keyTyped(KeyEvent event){
         JButton btn = null;
         btn = keyMap.get(event.getKeyChar());
-        // if(event.getKeyChar() != KeyEvent.CHAR_UNDEFINED){  // character
-            // btn = keyMap.get(event.getKeyChar());
-        // }
-        // if(btn == null){                                    // specialKey
-        //     System.out.println("btn is null now its not");
-        //     btn = specialKeyMap.get(event.getKeyCode());
-        //     System.out.printf("btn :%s", btn.getText());
-        // }
         if(btn != null){
             btn.setBackground(Color.GRAY);
         }
