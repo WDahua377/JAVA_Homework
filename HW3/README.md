@@ -48,21 +48,17 @@ The footprint is around 1.32 kg of CO2.
 
 ## 工具準備
 
-<li>安裝 JAVA：</li>
-
-```bash
-sudo apt update
-sudo apt install default-jre
-```
-查看是否已安裝： ```java -version```
-
-<li>安裝 JDK：</li>
+安裝 JAVA JDK：
 
 ```bash
 sudo apt update
 sudo apt install default-jdk
 ```
-查看是否已安裝： ```javac -version```
+查看是否已安裝：
+```bash
+javac -version
+java -version
+```
 
 ## 編譯
 進入專案的父目錄並輸入以下指令：
